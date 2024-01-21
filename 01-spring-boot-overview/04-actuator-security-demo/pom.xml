@@ -33,6 +33,7 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!-- This part added -->
 		<!-- 	ADD SUPPORT FOR SPRİNG SECURİTY	 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
