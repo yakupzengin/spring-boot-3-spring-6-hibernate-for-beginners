@@ -16,7 +16,7 @@ public class StudentErrorResponse {
         this.timeStamp = timeStamp;
     }
 
-    public int getStatus() {
+    public int getStatus()  {
         return status;
     }
 
