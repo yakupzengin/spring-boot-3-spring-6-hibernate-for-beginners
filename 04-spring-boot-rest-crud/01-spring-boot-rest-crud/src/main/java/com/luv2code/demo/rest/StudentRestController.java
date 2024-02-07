@@ -43,6 +43,11 @@ public class StudentRestController {
     public Student getStudent(@PathVariable int studentID) {
 
         // just index into the list ... keet it simple for now
+
+        // check the studentID again list size
+        if ( (studentID >= theStudents.size()) || (studentID <0 )){
+            throw new StudentNotFoundException("Student id not found - "  + studentID);
+        }
         return theStudents.get(studentID);
     }
 }
