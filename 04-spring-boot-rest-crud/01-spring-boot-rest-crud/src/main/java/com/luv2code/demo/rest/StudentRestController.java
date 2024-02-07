@@ -1,6 +1,7 @@
 package com.luv2code.demo.rest;
 
 import com.luv2code.demo.entity.Student;
+import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,17 +17,22 @@ public class StudentRestController {
         Thanks to Spring REST and Jackson POJOs are authomatically converted to JSON
      */
 
+    private List<Student> theStudents;
+
+    // define @PostConstruct to laod the student data .. only once !!
+    // this is MUCH better only load student data once
+    @PostConstruct
+    public void loadData(){
+        theStudents = new ArrayList<>();
+
+        theStudents.add(new Student("Elon","Musk"));
+        theStudents.add(new Student("Mario","Patel"));
+        theStudents.add(new Student("Marry","Farop"));
+    }
 
     // define endpoint "/students" - return a list of students
     @GetMapping("/students")
     public List<Student> getStudents(){
-
-        List<Student> students = new ArrayList<>();
-
-        students.add(new Student("Elon","Musk"));
-        students.add(new Student("Mario","Patel"));
-        students.add(new Student("Marry","Farop"));
-
-       return students;
+       return theStudents;
     }
 }
