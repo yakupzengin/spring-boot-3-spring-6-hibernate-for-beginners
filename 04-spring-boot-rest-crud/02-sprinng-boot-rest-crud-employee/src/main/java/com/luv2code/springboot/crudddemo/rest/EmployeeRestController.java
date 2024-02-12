@@ -4,10 +4,7 @@ import com.luv2code.springboot.crudddemo.entity.Employee;
 import com.luv2code.springboot.crudddemo.service.EmployeeService;
 import com.luv2code.springboot.crudddemo.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +37,17 @@ public class EmployeeRestController {
         return theEmployee;
     }
 
+    // add mapping for POST / employee - add new employee
 
+    @PostMapping("/employees")
+    public Employee addEmpployee(@RequestBody Employee theEmployee){
+
+        // also just in case they pass an id in JSON .. set id to 0
+        // this is to force a save of new item ... instead of update
+
+        theEmployee.setId(0);
+        Employee dbEmployee = employeeService.save(theEmployee);
+        return dbEmployee;
+    }
 
 }
